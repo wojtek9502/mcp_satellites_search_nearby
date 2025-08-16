@@ -37,17 +37,67 @@ Example UV configuration:
   - `min_culmination_altitude_deg` (str, optional): Minimum satellite altitude above horizon, in culmination, in degrees (default: 15)
 
 ### Example usage with an Agent
+Requirements:
+- Python 3.11+
+- Docker installed, MCP server is running inside a docker container
+
 1. Install requirements (Python 3.11+):
     ```shell
-    pip install -r requirements.txt
+    pip install openai-agents, fastmcp
     ```
 
-2. Create .env file. See .env_example for the details
+2. Run the script below. Enter your OPENAI_API_KEY:
+    
+```python
+import asyncio
+from datetime import datetime, timezone
 
-3. Run script example_run.py
-    ```shell
-    python example_run.py
-    ```
+import dotenv
+from agents.mcp import MCPServerStdio, MCPServerStdioParams
+from agents import Agent, Runner, trace
+
+
+OPENAI_API_KEY='YOUR_OPENAI_KEY_HERE'
+os.environ['OPENAI_API_KEY'] = OPENAI_API_KEY
+
+dotenv.load_dotenv(override=True)
+
+# example agent instructions
+agent_instructions = f"""
+Your goal is to calculate satellite passes for the user. 
+You have access to the satellites_searcher tool that can calculate satellite passes. params: lat and lon are required. If the user does not give you that information, ask about these details.
+Return the response from the tool as it is; do not parse the response from the tool in any way.
+It may happen that there will be no satellite passes for the user's location; then just return short information about it.
+The current date is {datetime.now(tz=timezone.utc).isoformat()} UTC
+"""
+
+# example user prompt
+# user_input = "My coordinates are 50.06143 19.93658."
+# user_input = "My coordinates are 50.06143 19.93658. Show me ISS (ZARYA)"
+#user_input = "My coordinates are 50.06143 19.93658. Show me CREW DRAGON 11 passes for the next 10 days."
+# user_input = "My coordinates are 50.06143 19.93658. Show me CREW DRAGON 11 passes for the next 5 days."
+# user_input = "My coordinates are 50.06143 19.93658. Show me CREW DRAGON 11 passes for the next 5 days. Use timezone Europe/Warsaw"
+user_input = "My coordinates are 50.06143 19.93658. Show me CREW DRAGON 11 passes for the next 5 days. Search for the passes with minimum culmination altitude 20 deg"
+model = "gpt-4.1-mini"
+
+async def main():
+    # we run our own mcp server with our code
+    mcp_params = {"command": "uv", "args": ["run", "satellites_search_server.py"]}
+    mcp_params = MCPServerStdioParams(**mcp_params)
+
+    async with MCPServerStdio(params=mcp_params, client_session_timeout_seconds=120) as mcp_server:
+        agent = Agent(name="agent", instructions=agent_instructions, model=model, mcp_servers=[mcp_server])
+
+        # See the track here https://platform.openai.com/traces
+        with trace("Satellites Search"):
+            result = await Runner.run(agent, user_input)
+            print(result.final_output)
+
+if __name__ == "__main__":
+    asyncio.run(main())
+
+```
+
 
 ### Prompts examples
 
