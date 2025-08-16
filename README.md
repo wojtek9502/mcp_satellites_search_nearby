@@ -78,7 +78,6 @@ Passes of satellite 'ISS (ZARYA)' over location (50.06143, 19.93658) during the 
 </details>
 
 ---
-
 ***No satellite passes available for given parameters.***  
 Prompt: My coordinates are 50.06143 19.93658. Show me ISS (ZARYA) passes  in the next 1 day but only if the minimum culmination altitude is 50  
 Expected Response: 'ISS (ZARYA)' satellite passes for the next 10 days  
@@ -89,7 +88,6 @@ Expected Response: 'ISS (ZARYA)' satellite passes for the next 10 days
 PYA) | 2025-08-26 02:05:01 +00:00 | 0.0°       | 248.3°    | 2025-08-26 02:10:28 +00:00 | 79.6°      | 161.2°    | 2025-08-26 02:15:56 +00:00 | -0.0°      | 73.9°     |
 ```
 </details>
---- 
 
 --- 
 ***No location provided (required parameters missing).**  
@@ -103,7 +101,6 @@ Expected Response:*** AI will ask for your location
 There are no ISS (ZARYA) passes over your location (50.06143, 19.93658) in the next 1 day with a minimum culmination altitude of 50 degrees.
 ```
 </details>
---- 
 
 --- 
 ***Coordinates and satellite name provided.***  
@@ -129,9 +126,6 @@ Passes of satellite 'ISS (ZARYA)' over location (50.06143, 19.93658) during the 
 | ISS (ZARYA) | 2025-08-26 02:05:01 +00:00 | 0.0°       | 248.3°    | 2025-08-26 02:10:28 +00:00 | 79.6°      | 160.7°    | 2025-08-26 02:15:56 +00:00 | -0.0°      | 73.9°     |
 ```
 </details>
---- 
-
-
 
 --- 
 ***Coordinates, satellite name, and custom number of days provided.***  
@@ -150,7 +144,7 @@ Passes of satellite 'CREW DRAGON 11' over location (50.06143, 19.93658) during t
 | CREW DRAGON 11 | 2025-08-21 02:54:33 +00:00 | 0.0°       | 222.6°    | 2025-08-21 02:59:48 +00:00 | 32.5°      | 147.8°    | 2025-08-21 03:05:05 +00:00 | -0.0°      | 73.2°     |
 ```
 </details>
---- 
+
 
 --- 
 ***Coordinates provided, incorrect satellite name.***  
@@ -177,7 +171,7 @@ Passes of satellite 'ISS (ZARYA)' over location (50.06143, 19.93658) during the 
 | ISS (ZARYA) | 2025-08-26 02:05:01 +00:00 | 0.0°       | 248.3°    | 2025-08-26 02:10:28 +00:00 | 79.6°      | 160.7°    | 2025-08-26 02:15:56 +00:00 | -0.0°      | 73.9°     |
 ```
 </details>
---- 
+
 
 --- 
 ***Coordinates, satellite name, custom days, and timezone provided.***  
@@ -196,7 +190,7 @@ Passes of satellite 'CREW DRAGON 11' over location (50.06143, 19.93658) during t
 | CREW DRAGON 11 | 2025-08-21 04:54:33 +02:00 | 0.0°       | 222.6°    | 2025-08-21 04:59:48 +02:00    | 32.5°      | 147.8°    | 2025-08-21 05:05:05 +02:00 | -0.0°      | 73.2°     |
 ```
 </details>
---- 
+
 
 --- 
 **Context: Coordinates, satellite name, custom days, and minimum altitude provided.**  
