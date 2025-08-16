@@ -20,9 +20,9 @@ It is the MCP Server version of the project: [satellites_search_nearby](https://
 
 ### MCP Config
 
-Example UV configuration:
+Example docker configuration:
 ```json
- {"command": "uv", "args": ["run", "satellites_search_server.py"]}
+ {"command": "docker", "args": ["run", "-i", "--rm", "wojtek9502/satellites_passes_mcp"]}
 ```
 
 ### Available tool and params
