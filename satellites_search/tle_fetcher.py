@@ -1,17 +1,16 @@
 from datetime import datetime, timezone, timedelta
-from pathlib import Path
 
 import aiohttp
 import aiofiles
 
-from satellites_search import TleDatabase, TLE_DATABASE_PATH, TEMP_FILES_DIR
+from satellites_search import TleDatabase, TLE_DATABASE_PATH
 
 
 class TLEFetcherLimiter:
     """
-        TLE page has timeout, we can download TLE files only few times per 2 hours
+        The TLE pages have limits; we can download TLE files only a few times per 2 hours.
         Here we will check the database and search the latest TLE record
-        if record's created_on is older than 2h we download the new TLE file
+        If the record's created_on is older than 2h, we will download the new TLE file.
     """
 
     def __init__(self, db):
@@ -57,11 +56,5 @@ class TLEFetcher:
                 l1 = lines[i + 1].strip()
                 l2 = lines[i + 2].strip()
                 self.tle_database.insert_tle(satellite_name, l1, l2)
-
-            local_tle_path = str(Path(TEMP_FILES_DIR, 'latest_tle.txt'))
-            await self._write_tle_file_locally(
-                file_path=local_tle_path,
-                tle_file_content=tle_text
-            )
 
         return "Latest TLE record downloaded and saved in the db"
