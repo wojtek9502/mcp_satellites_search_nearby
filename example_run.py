@@ -1,4 +1,5 @@
 import asyncio
+import os
 from datetime import datetime, timezone
 
 import dotenv
@@ -6,6 +7,9 @@ from agents.mcp import MCPServerStdio, MCPServerStdioParams
 from agents import Agent, Runner, trace
 
 dotenv.load_dotenv(override=True)
+if 'OPENAI_API_KEY' not in os.environ.keys():
+    raise Exception('OPENAI_API_KEY environment variable not set')
+
 
 # example agent instructions
 agent_instructions = f"""
