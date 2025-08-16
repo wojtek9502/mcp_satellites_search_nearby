@@ -5,6 +5,7 @@ from datetime import datetime, timezone
 import dotenv
 from agents.mcp import MCPServerStdio, MCPServerStdioParams
 from agents import Agent, Runner, trace
+from skyfield.api import load
 
 dotenv.load_dotenv(override=True)
 if 'OPENAI_API_KEY' not in os.environ.keys():
@@ -30,6 +31,9 @@ user_input = "My coordinates are 50.06143 19.93658. Show me CREW DRAGON 11 passe
 model = "gpt-4.1-mini"
 
 async def main():
+    print('Load planets file...')
+    load('de421.bsp')
+
     # we run our own mcp server with our code
     mcp_params = {"command": "uv", "args": ["run", "satellites_search_server.py"]}
     mcp_params = MCPServerStdioParams(**mcp_params)
