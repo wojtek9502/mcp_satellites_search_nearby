@@ -52,7 +52,7 @@ Example UV configuration:
 ### Prompts examples
 
 ---  
-***Context: MMinimal prompt with required parameters only (coordinates passed, no satellite name).***   
+***Context: Minimal prompt with required parameters only (coordinates passed, no satellite name).***   
 Prompt: My coordinates are 50.06143 19.93658.  
 Expected Response: 'ISS (ZARYA)' satellite passes for the next 10 days  
 
