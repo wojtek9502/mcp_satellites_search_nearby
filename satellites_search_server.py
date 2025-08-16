@@ -2,6 +2,7 @@ from typing import Annotated
 
 from mcp.server.fastmcp import FastMCP
 from pydantic import Field
+from skyfield.api import load
 
 from satellites_search.satellite_search import SatelliteSearch
 
@@ -40,4 +41,6 @@ async def get_satellite_passes(
     return search_results_text
 
 if __name__ == "__main__":
+    print('Load planets file...')
+    load('de421.bsp')
     mcp.run(transport='stdio')
