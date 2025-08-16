@@ -78,7 +78,7 @@ Passes of satellite 'ISS (ZARYA)' over location (50.06143, 19.93658) during the 
 </details>
 
 ---
-***No satellite passes available for given parameters.***  
+***Context: No satellite passes available for given parameters.***  
 Prompt: My coordinates are 50.06143 19.93658. Show me ISS (ZARYA) passes  in the next 1 day but only if the minimum culmination altitude is 50  
 Expected Response: 'ISS (ZARYA)' satellite passes for the next 10 days  
 <details>
@@ -90,7 +90,7 @@ PYA) | 2025-08-26 02:05:01 +00:00 | 0.0°       | 248.3°    | 2025-08-26 02:10:
 </details>
 
 --- 
-***No location provided (required parameters missing).**  
+***Context: No location provided (required parameters missing).**  
 Prompt: Show me the satellite passes.  
 Expected Response:*** AI will ask for your location  
 
@@ -103,7 +103,7 @@ There are no ISS (ZARYA) passes over your location (50.06143, 19.93658) in the n
 </details>
 
 --- 
-***Coordinates and satellite name provided.***  
+***Context: Coordinates and satellite name provided.***  
 Prompt: My coordinates are 50.06143 19.93658. Show me ISS (ZARYA) passes.  
 Expected Response: 'ISS (ZARYA)' satellite passes for the next 10 days  
 <details>
@@ -128,7 +128,7 @@ Passes of satellite 'ISS (ZARYA)' over location (50.06143, 19.93658) during the 
 </details>
 
 --- 
-***Coordinates, satellite name, and custom number of days provided.***  
+***Context: Coordinates, satellite name, and custom number of days provided.***  
 Prompt: My coordinates are 50.06143 19.93658. Show me CREW DRAGON 11 passes for the next 5 days.  
 Expected Response: 'CREW DRAGON 11' satellite passes for the next 5 days  
 
@@ -147,7 +147,7 @@ Passes of satellite 'CREW DRAGON 11' over location (50.06143, 19.93658) during t
 
 
 --- 
-***Coordinates provided, incorrect satellite name.***  
+***Context: Coordinates provided, incorrect satellite name.***  
 Prompt: My coordinates are 50.06143 19.93658. Show me My satellite passes.  
 Expected Response: 'ISS (ZARYA)' satellite passes for the next 10 days  
 
@@ -174,7 +174,7 @@ Passes of satellite 'ISS (ZARYA)' over location (50.06143, 19.93658) during the 
 
 
 --- 
-***Coordinates, satellite name, custom days, and timezone provided.***  
+***Context: Coordinates, satellite name, custom days, and timezone provided.***  
 Prompt: My coordinates are 50.06143 19.93658. Show me CREW DRAGON 11 passes for the next 5 days. Use timezone Europe/Warsaw 
 Expected Response: 'CREW DRAGON 11' satellite passes for the next 5 days. Data is converted from UTC to Europe/Warsaw.  
 
