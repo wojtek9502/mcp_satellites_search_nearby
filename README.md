@@ -1,6 +1,6 @@
-# Fetch MCP Server
-A Model Context Protocol server with satellites passes near your location search capabilities. This server enables LLMs to run satellites searcher with proper parameters based on your input.  
-It is an MCP Server version of the project: [satellites_search_nearby](https://github.com/wojtek9502/satellites_search_nearby)
+# Satellite Passes MCP Server
+A Model Context Protocol (MCP) server provides satellite pass information near your location. This server allows LLMs to run satellite searches with proper parameters based on your input.  
+It is the MCP Server version of the project: [satellites_search_nearby](https://github.com/wojtek9502/satellites_search_nearby)
 
 ### Available objects to track with the default TLE
 - ISS (ZARYA)  
@@ -20,7 +20,7 @@ It is an MCP Server version of the project: [satellites_search_nearby](https://g
 
 ### MCP Config
 
-uv config example
+Example UV configuration:
 ```json
  {"command": "uv", "args": ["run", "satellites_search_server.py"]}
 ```
@@ -52,9 +52,10 @@ uv config example
 ### Prompts examples
 
 ---  
-***Context: Minimal prompt with required params only. Coordinates are passed, no satellite name provided***   
-Prompt:My coordinates are 50.06143 19.93658.  
-Expected Response: 'ISS (ZARYA)' satellite passes for the next 10 days
+***Context: MMinimal prompt with required parameters only (coordinates passed, no satellite name).***   
+Prompt: My coordinates are 50.06143 19.93658.  
+Expected Response: 'ISS (ZARYA)' satellite passes for the next 10 days  
+
 <details>
 <summary>AI response</summary>
 
@@ -78,9 +79,9 @@ Passes of satellite 'ISS (ZARYA)' over location (50.06143, 19.93658) during the 
 
 ---
 
-***Context: There are no the satellite passes with these parameters***  
-Prompt: My coordinates are 50.06143 19.93658. Show me ISS (ZARYA) passes  in the next 1 day but only if the minimum culmination altitude is 50
-Expected Response: 'ISS (ZARYA)' satellite passes for the next 10 days
+***No satellite passes available for given parameters.***  
+Prompt: My coordinates are 50.06143 19.93658. Show me ISS (ZARYA) passes  in the next 1 day but only if the minimum culmination altitude is 50  
+Expected Response: 'ISS (ZARYA)' satellite passes for the next 10 days  
 <details>
 <summary>AI response</summary>
 
@@ -91,9 +92,9 @@ PYA) | 2025-08-26 02:05:01 +00:00 | 0.0°       | 248.3°    | 2025-08-26 02:10:
 --- 
 
 --- 
-***Context: No user's location in the prompt. Required params are not passed***  
+***No location provided (required parameters missing).**  
 Prompt: Show me the satellite passes.  
-Expected Response:*** AI will ask about your location  
+Expected Response:*** AI will ask for your location  
 
 <details>
 <summary>AI response</summary>
@@ -105,7 +106,7 @@ There are no ISS (ZARYA) passes over your location (50.06143, 19.93658) in the n
 --- 
 
 --- 
-***Context: Coordinates are passed, the satellite's name passed***  
+***Coordinates and satellite name provided.***  
 Prompt: My coordinates are 50.06143 19.93658. Show me ISS (ZARYA) passes.  
 Expected Response: 'ISS (ZARYA)' satellite passes for the next 10 days  
 <details>
@@ -133,9 +134,10 @@ Passes of satellite 'ISS (ZARYA)' over location (50.06143, 19.93658) during the 
 
 
 --- 
-***Context: Coordinates are passed, the satellite's name passed, number of days, other than default, passed***  
-Prompt: My coordinates are 50.06143 19.93658. Show me CREW DRAGON 11 passes for the next 5 days.
-Expected Response: 'CREW DRAGON 11' satellite passes for the next 5 days
+***Coordinates, satellite name, and custom number of days provided.***  
+Prompt: My coordinates are 50.06143 19.93658. Show me CREW DRAGON 11 passes for the next 5 days.  
+Expected Response: 'CREW DRAGON 11' satellite passes for the next 5 days  
+
 <details>
 <summary>AI Response</summary>
 
@@ -151,7 +153,7 @@ Passes of satellite 'CREW DRAGON 11' over location (50.06143, 19.93658) during t
 --- 
 
 --- 
-***Context: Coordinates are passed, Wrong name of the satellite***  
+***Coordinates provided, incorrect satellite name.***  
 Prompt: My coordinates are 50.06143 19.93658. Show me My satellite passes.  
 Expected Response: 'ISS (ZARYA)' satellite passes for the next 10 days  
 
@@ -178,9 +180,10 @@ Passes of satellite 'ISS (ZARYA)' over location (50.06143, 19.93658) during the 
 --- 
 
 --- 
-***Context: Coordinates are passed, the satellite's name passed, number of days, other than default, passed, timezone parameter used***  
+***Coordinates, satellite name, custom days, and timezone provided.***  
 Prompt: My coordinates are 50.06143 19.93658. Show me CREW DRAGON 11 passes for the next 5 days. Use timezone Europe/Warsaw 
-Expected Response: 'CREW DRAGON 11' satellite passes for the next 5 days, Data is calculated from default UTC into Europe/Warsaw
+Expected Response: 'CREW DRAGON 11' satellite passes for the next 5 days. Data is converted from UTC to Europe/Warsaw.  
+
 <details>
 <summary>AI Response</summary>
 
@@ -196,9 +199,9 @@ Passes of satellite 'CREW DRAGON 11' over location (50.06143, 19.93658) during t
 --- 
 
 --- 
-**Context: Coordinates are passed, the satellite's name passed, number of days, other than default, passed, min altitude param passed**  
+**Context: Coordinates, satellite name, custom days, and minimum altitude provided.**  
 Prompt: My coordinates are 50.06143 19.93658. Show me CREW DRAGON 11 passes for the next 5 days. Search for the passes with minimum culmination altitude 20 deg  
-Expected Response: 'CREW DRAGON 11' satellite passes for the next 5 days, but only if satellite pass minimum culmination altitude >= 20 deg  
+Expected Response: 'CREW DRAGON 11' satellite passes for the next 5 days, only if satellite pass minimum culmination altitude ≥ 20°.
 <details>
 <summary>AI Response</summary>
 
