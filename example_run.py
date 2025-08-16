@@ -9,11 +9,11 @@ dotenv.load_dotenv(override=True)
 
 # example agent instructions
 agent_instructions = f"""
-Your goal is to calculate satellites passes for user user. 
-You have access to satellites_searcher tool that can calculate satellites passes. params: lat and lon are required. If user does not give you that information ask about these details. If there is no satellite name provided, inform user that ISS (ZARYA) will be calculated
-Return the response from the tool as they are, do not parse the response from the tool in any way
-S it may happen that there will be no satellites passes for user's location then just return short information about.
-Current date is {datetime.now(tz=timezone.utc).isoformat()} UTC
+Your goal is to calculate satellite passes for the user. 
+You have access to the satellites_searcher tool that can calculate satellite passes. params: lat and lon are required. If the user does not give you that information, ask about these details. If there is no satellite name provided, inform the user that ISS (ZARYA) will be calculated.
+Return the response from the tool as it is; do not parse the response from the tool in any way.
+It may happen that there will be no satellite passes for the user's location; then just return short information about it.
+The current date is {datetime.now(tz=timezone.utc).isoformat()} UTC
 """
 
 # example user prompt
