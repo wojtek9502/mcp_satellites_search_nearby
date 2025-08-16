@@ -1,7 +1,7 @@
 from typing import Annotated
 
 from mcp.server.fastmcp import FastMCP
-from pydantic import Field, BaseModel
+from pydantic import Field
 
 from satellites_search.satellite_search import SatelliteSearch
 
@@ -20,7 +20,7 @@ async def get_satellite_passes(
     tle_url: Annotated[str, Field(description="URL of the TLE file to download")] = DEFAULT_TLE,
     timezone_name: Annotated[str, Field(description="Timezone for the observer (default: UTC)")] = 'UTC',
     elevation_m: Annotated[int, Field(description="Observer's elevation in meters (default: 200)")] = 200,
-    min_culmination_altitude_deg: Annotated[int, Field(description="Minimum satellite altitude above horizon in degrees (default: 15)")] = 15,
+    min_culmination_altitude_deg: Annotated[int, Field(description="Minimum satellite altitude above horizon, in culmination, in degrees (default: 15)")] = 15,
 ) -> str:
     """
         Get the satellite passes. Use this tool to calculate the satellite passes.

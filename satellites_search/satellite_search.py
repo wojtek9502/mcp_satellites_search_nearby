@@ -11,9 +11,7 @@ from satellites_search import TleDatabase, TLE_DATABASE_PATH
 from satellites_search.database import TleRecord
 from satellites_search.tle_fetcher import TLEFetcher
 
-# ---- CONFIG ----
 ts = load.timescale()
-
 
 class SatelliteSearch:
     def __init__(self, tle_url: str, satellite_name: str, lat: float, lon: float, elev: int = 200, timezone_param: str = "UTC", min_culmination_altitude_deg: float = 15.0, range_days: int = 20):
