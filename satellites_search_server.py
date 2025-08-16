@@ -13,8 +13,8 @@ DEFAULT_TLE = 'https://celestrak.org/NORAD/elements/stations.txt'
 # provide parameters directly like below
 @mcp.tool()
 async def get_satellite_passes(
-    lat: Annotated[str, Field(description="Latitude of the observer. Plain decimal coordinates (e.g., '50.0647')")],
-    lon: Annotated[str, Field(description="Longitude of the observer. Plain decimal coordinates (e.g., '19.9450')")],
+    lat: Annotated[str, Field(description="Latitude of the observer. Plain string coordinates (e.g., '50.0647')")],
+    lon: Annotated[str, Field(description="Longitude of the observer. Plain string coordinates (e.g., '19.9450')")],
     satellite_name: Annotated[str, Field(description="Name of the satellite to track (default: ISS (ZARYA))")] = 'ISS (ZARYA)',
     range_days: Annotated[int, Field(description="Number of days to search for satellite passes (default: 10)")] = 10,
     tle_url: Annotated[str, Field(description="URL of the TLE file to download")] = DEFAULT_TLE,
